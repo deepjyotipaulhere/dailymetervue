@@ -9,21 +9,31 @@
         <div style="padding-top:30px;">
             <div class="container">
                 <div class="row">
-                    <div class="col s8">
-                        <ul class="tabs tabs-fixed-width z-depth-1">
-                            <li class="tab col s3"><a href="#test1" class="active">Login</a></li>
-                            <li class="tab col s3"><a href="#test4">Signup</a></li>
+                <div class="card black">
+                    <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a href="#test4">Log In</a></li>
+                            <li class="tab"><a href="#test6">Sign Up</a></li>
                         </ul>
                     </div>
-                    <div id="test1" class="col s8" style="padding-top:20px;">
-                        <form>
-                            <div class="input-field col s12">
-                                <input id="email" type="text" class="validate">
-                                <label for="email">Email</label>
-                            </div>
-                        </form>
+                    <div class="card-content grey lighten-4">
+                        <div id="test4">
+                            <form>
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" style="font-family:'Zilla'">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="pwd" type="password">
+                                    <label for="pwd">Password</label>
+                                </div>
+                                <br>
+                                <button class="btn btn-large black waves-effect waves-light">Sign In</button>
+                            </form>
+                        </div>
+                        <div id="test6">Test 3</div>
                     </div>
-                    <div id="test4" class="col s12">Test 4</div>
+                </div>
                 </div>
             </div>
         </div>
