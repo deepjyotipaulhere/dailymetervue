@@ -51,7 +51,20 @@
                                             <label for="cname">Your Full Name</label>
                                         </div>
                                         <br>
-                                        <button class="btn btn-large black waves-effect waves-light">Register</button>
+                                        <center>
+                                        <button v-if="!isRegisterClicked" class="btn btn-large black waves-effect waves-light" style="width:100%" @click="register">Register</button>
+                                        <div v-else class="preloader-wrapper small active">
+                                            <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div><div class="gap-patch">
+                                                    <div class="circle"></div>
+                                                </div><div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </center>
                                     </form>
                                 </div>
                             </div>
@@ -95,11 +108,23 @@ export default {
                 email:'',
                 pwd:'',
                 name:''
-            }
+            },
+            isRegisterClicked: false
         }
     },
     methods:{
-        
+        register(){
+            this.isRegisterClicked=true
+            this.$http.post('http://localhost:5000/register',this.registerdata).then(response=>{
+                if (response.data=="Duplicate Key")
+                {
+                    M.toast({html: 'Duplicate Key found!'})
+                    this.isRegisterClicked=false
+                }
+                else
+                    this.$router.push("/dashboard")
+            })
+        }
     },
     created(){
         $(document).ready(function(){
