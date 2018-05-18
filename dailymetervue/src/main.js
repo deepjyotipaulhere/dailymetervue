@@ -2,14 +2,28 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+
+import Vuex from 'vuex'
 import router from './router'
 
 Vue.config.productionTip = false
+
+const store = new Vuex.Store({
+  state: {
+    url: 'http://localhost:5000'
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
