@@ -5,8 +5,10 @@ import App from './App'
 
 import Vuex from 'vuex'
 import router from './router'
+import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false
+Vue.use(VueResource)
 
 const store = new Vuex.Store({
   state: {

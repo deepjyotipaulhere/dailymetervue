@@ -11,8 +11,13 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
+<<<<<<< HEAD
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
+=======
+    "vue-resource": "^1.5.0",
+    "vue-router": "^3.0.1"
+>>>>>>> 5940ead68cc7e399e1fc3943d8e036dc7b51f503
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
