@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         getpost(){
-            this.$http.get('http://localhost:5000/post/'+this.$route.params.id).then(response=>{
+            this.$http.get('http://149.56.14.83:5000/post/'+this.$route.params.id).then(response=>{
                 this.title=response.data.title
                 this.post=response.data.post.replace(new RegExp("\\\\n", "g"), "<br />");
                 this.date=response.data.date

@@ -49,7 +49,7 @@ export default {
     },
     methods:{
         getposts(){
-            this.$http.get('http://localhost:5000/getposts/'+this.$session.get("userid")).then(response=>{
+            this.$http.get('http://149.56.14.83:5000/getposts/'+this.$session.get("userid")).then(response=>{
                 var xposts=response.data
                 const dataarr=[]
                 for (var x in xposts){

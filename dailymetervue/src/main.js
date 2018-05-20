@@ -15,7 +15,7 @@ Vue.use(VueSession)
 
 const store = new Vuex.Store({
   state: {
-    url: 'http://localhost:5000'
+    url: 'http://149.56.14.83:5000'
   },
   mutations: {
     increment (state) {

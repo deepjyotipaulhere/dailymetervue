@@ -44,7 +44,7 @@ export default {
             alert('sdgs')
         },
         createPost(){
-            this.$http.post('http://localhost:5000/createpost', this.postdata).then(response=>{
+            this.$http.post('http://149.56.14.83:5000/createpost', this.postdata).then(response=>{
                 console.log("Ok")
             })
         }

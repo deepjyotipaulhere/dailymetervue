@@ -118,7 +118,7 @@ export default {
     methods:{
         register(){
             this.isRegisterClicked=true
-            this.$http.post('http://localhost:5000/register',this.registerdata).then(response=>{
+            this.$http.post('http://149.56.14.83:5000/register',this.registerdata).then(response=>{
                 if (response.data=="Duplicate Key")
                 {
                     M.toast({html: 'Duplicate Key found!'})
@@ -137,7 +137,7 @@ export default {
         login(){
             this.isLoginClicked=true
             this.loginInvalid=false
-            this.$http.post('http://localhost:5000/login',this.logindata).then(response=>{
+            this.$http.post('http://149.56.14.83:5000/login',this.logindata).then(response=>{
                 if (response.data=="invalid")
                 {
                     this.isLoginClicked=false
