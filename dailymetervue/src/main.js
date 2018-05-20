@@ -6,9 +6,12 @@ import App from './App'
 import Vuex from 'vuex'
 import router from './router'
 import VueResource from 'vue-resource'
+import VueSession from 'vue-session'
 
 Vue.config.productionTip = false
 Vue.use(VueResource)
+Vue.use(Vuex)
+Vue.use(VueSession)
 
 const store = new Vuex.Store({
   state: {

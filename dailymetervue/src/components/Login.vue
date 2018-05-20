@@ -28,8 +28,9 @@
                                             <input id="pwd" type="password" v-model="logindata.pwd">
                                             <label for="pwd">Password</label>
                                         </div>
+                                        <span v-if="loginInvalid" class="right alert"><span class="fa fa-exclamation-triangle"></span> Username and Password did not match</span>
                                         <br>
-                                        <button class="btn btn-large black waves-effect waves-light">Sign In</button>
+                                        <button class="btn btn-large black waves-effect waves-light" @click="login">Sign In</button>
                                     </form>
                                 </div>
                                 <div id="signup">
@@ -109,7 +110,9 @@ export default {
                 pwd:'',
                 name:''
             },
-            isRegisterClicked: false
+            isRegisterClicked: false,
+            isLoginClicked: false,
+            loginInvalid: false
         }
     },
     methods:{
@@ -122,7 +125,33 @@ export default {
                     this.isRegisterClicked=false
                 }
                 else
+                {
+                    this.$session.start()
+                    this.$session.set("email",this.registerdata.email)
+                    this.$session.set("name",this.registerdata.name)
+                    this.$session.set("userid",response.data)
                     this.$router.push("/dashboard")
+                }
+            })
+        },
+        login(){
+            this.isLoginClicked=true
+            this.loginInvalid=false
+            this.$http.post('http://localhost:5000/login',this.logindata).then(response=>{
+                if (response.data=="invalid")
+                {
+                    this.isLoginClicked=false
+                    this.loginInvalid=true
+                }
+                else
+                {
+                    var x=response.data
+                    this.$session.start()
+                    this.$session.set("email",this.logindata.email)
+                    this.$session.set("name",x["name"])
+                    this.$session.set("userid",x["uid"])
+                    this.$router.push("/dashboard")
+                }
             })
         }
     },
@@ -135,5 +164,10 @@ export default {
 </script>
 
 <style>
-
+.alert{
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 3px
+}
 </style>
+

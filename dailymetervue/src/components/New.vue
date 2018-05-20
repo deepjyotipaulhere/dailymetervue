@@ -11,13 +11,13 @@
                 </div>
             </div>
             <div class="row">
-                <input type="text" placeholder="Enter Title" style="border:none;font-size:4em;font-family:'Bebas';height:auto" class="col s12 m12 l12" />
+                <input type="text" placeholder="Enter Title" style="border:none;font-size:4em;font-family:'Bebas';height:auto" class="col s12 m12 l12" v-model="postdata.title" />
             </div>
-            <textarea placeholder="Start typing your story..." style="border:none;font-family:'ZillaRegular';font-size:larger;height:auto !important;outline:none" rows="30"></textarea>
+            <textarea placeholder="Start typing your story..." style="border:none;font-family:'ZillaRegular';font-size:larger;height:auto !important;outline:none" rows="30" v-model="postdata.post"></textarea>
             <div class="row">
                 <div class="col l4 m4"></div>
                 <div class="col l4 m4 s12">
-                    <button class="btn btn-large black waves-effect waves-light" style="width:100%">Post</button>
+                    <button class="btn btn-large black waves-effect waves-light" style="width:100%" @click.prevent="createPost">Post</button>
                 </div>
                 <div class="col l4 m4"></div>
             </div>
@@ -42,11 +42,21 @@ export default {
     methods:{
         check(){
             alert('sdgs')
+        },
+        createPost(){
+            this.$http.post('http://localhost:5000/createpost', this.postdata).then(response=>{
+                console.log("Ok")
+            })
         }
     },
     data(){
         return {
-            date:''
+            postdata:{
+                date:'',
+                title:'',
+                post:'',
+                user: this.$session.get("userid")
+            }
         }
     },
     computed:{
