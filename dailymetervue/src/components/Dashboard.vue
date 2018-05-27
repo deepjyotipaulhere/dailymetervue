@@ -16,7 +16,21 @@
         </div>
         <hr>
         <h3 class="center">Your Days</h3>
-        <div class="row">
+        <center v-if="!isLoaded">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        </center>
+
+        <div v-else class="row">
             <div :key="post.postid" class="col m3 s12 l3" v-for="post in posts">
                 <router-link :to="{path:'/post/'+ post.postid}">
                     <div class="card hoverable">
@@ -41,7 +55,8 @@
 export default {
     data(){
         return {
-            posts:[]
+            posts:[],
+            isLoaded: false
         }
     },
     created:function(){
@@ -57,6 +72,7 @@ export default {
                 }
 
                 this.posts=dataarr
+                this.isLoaded=true
             })
         }
     }
