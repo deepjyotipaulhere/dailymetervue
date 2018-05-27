@@ -30,7 +30,18 @@
                                         </div>
                                         <span v-if="loginInvalid" class="right alert"><span class="fa fa-exclamation-triangle"></span> Username and Password did not match</span>
                                         <br>
-                                        <button class="btn btn-large black waves-effect waves-light" @click="login">Sign In</button>
+                                        <button v-if="!isLoginClicked" class="btn btn-large black waves-effect waves-light" @click="login">Sign In</button>
+                                        <div v-else class="preloader-wrapper small active">
+                                            <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div><div class="gap-patch">
+                                                    <div class="circle"></div>
+                                                </div><div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                                 <div id="signup">
@@ -150,7 +161,7 @@ export default {
                     this.$session.set("email",this.logindata.email)
                     this.$session.set("name",x["name"])
                     this.$session.set("userid",x["uid"])
-                    this.$router.push("/dashboard")
+                    location.reload()
                 }
             })
         }
@@ -159,6 +170,9 @@ export default {
         $(document).ready(function(){
             $('.tabs').tabs();
         });
+        if (this.$session.exists()){
+            window.location.replace('/#/dashboard')
+        }
     }
 }
 </script>

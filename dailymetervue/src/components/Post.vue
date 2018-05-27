@@ -1,5 +1,11 @@
 <template>
     <div>
+        
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light blue darken-4" :href=shareLink target="_blank"><span class="fa fa-facebook"></span></a>
+        </div>
+      
+          
         <div class="container">
             <br>
             <router-link :to="{path:'/dashboard'}">
@@ -36,7 +42,8 @@ export default {
             date:'',
             post:'',
             by:'',
-            isLoaded: false
+            isLoaded: false,
+            shareLink: "https://www.facebook.com/sharer/sharer.php?u="+window.location
         }
     },
     created:function(){

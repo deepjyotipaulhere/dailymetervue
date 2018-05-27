@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
 import New from '@/components/New'
 import Post from '@/components/Post'
+import Logout from '@/components/Logout'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/post/:id',
       name: 'Post',
       component: Post
+    },
+    {
+      path: '/logout',
+      name: 'LogOut',
+      component: Logout
     }
   ]
 })

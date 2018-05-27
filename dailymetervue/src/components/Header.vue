@@ -1,14 +1,22 @@
 <template>
   <div>
+
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">one</a></li>
+        <li><a href="#!">two</a></li>
+        <li class="divider"></li>
+        <li><router-link :to="{path:'/logout'}">Sign Out</router-link></li>
+    </ul>
     <nav class="nav-extended">
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
-        </ul>
+            <a href="#" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+                <li v-if="$session.exists()"><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ $session.get("name") }} <span class="fa fa-chevron-down"></span></a></li>
+            </ul>
         </div>
         <!--
         <div class="nav-content">
@@ -36,7 +44,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+    created:function(){
+        $(document).ready(function(){
+            $(".dropdown-trigger").dropdown({coverTrigger:false});
+        });
+    }
+};
 </script>
 
 <style>
