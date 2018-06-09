@@ -9,7 +9,7 @@
         <div class="container">
             <br>
             <router-link :to="{path:'/dashboard'}">
-                <b class="black-text"><span class="fa fa-chevron-left"></span> Back to posts</b>
+                <b class="black-text"><span class="fa fa-chevron-left"></span> Back to My Diary</b>
             </router-link>
         </div>
         <center v-if="!isLoaded">
@@ -51,7 +51,7 @@ export default {
     },
     methods:{
         getpost(){
-            this.$http.get('http://149.56.14.83:5000/post/'+this.$route.params.id).then(response=>{
+            this.$http.get(this.$store.state.url+'/post/'+this.$route.params.id).then(response=>{
                 this.title=response.data.title
                 this.post=response.data.post.replace(new RegExp("\\\\n", "g"), "<br />");
                 this.date=response.data.date

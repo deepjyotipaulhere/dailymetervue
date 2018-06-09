@@ -2,11 +2,11 @@
   <div>
       <div class="container-fluid">
         <div class="row">
-            <div class="col m3 s12 l3">
+            <div class="col m2 s12 l2">
                 <router-link :to="{path:'/new'}">
                     <div class="card-panel black">
                         <span class="white-text">
-                            <h1 class="center" style="font-size:5em;margin:0"><span class="fa fa-plus"></span></h1>
+                            <h1 class="center" style="font-size:4em;margin:0"><span class="fa fa-plus"></span></h1>
                             <h5 class="center" style="margin:0">Add New</h5>
                         </span>
                     </div>
@@ -15,7 +15,8 @@
             </div>
         </div>
         <hr>
-        <h3 class="center">Your Days</h3>
+        <h3 class="center" style="margin:0;padding:0">My Diary</h3>
+        <p class="center" style="margin:0;padding:0">{{ posts.length>0?posts.length+" pages":"" }}</p>
         <center v-if="!isLoaded">
         <div class="preloader-wrapper small active">
             <div class="spinner-layer spinner-green-only" style="border-color:#000">
@@ -30,21 +31,16 @@
         </div>
         </center>
 
-        <div v-else class="row">
-            <div :key="post.postid" class="col m3 s12 l3" v-for="post in posts">
-                <router-link :to="{path:'/post/'+ post.postid}">
-                    <div class="card hoverable">
-                        <div class="card-panel">
-                            <span class="black-text">
-                                <div style="min-height:150px">
-                                    <h4 style="margin:0">{{ post.title }}</h4>
-                                    <p style="margin:0">{{ post.post }}...</p>
-                                </div>
-                                <label class="text-muted right">{{ post.date }}</label>
-                            </span>
-                        </div>
-                    </div>
-                </router-link>
+
+        <div v-else class="container">
+            <div class="row">
+                <div class="collection z-depth-1">
+                    <router-link :to="{path:'/post/'+ post.postid}" href="#!" class="collection-item" :key="post.postid" v-for="(post,i) in posts">
+                        <h4 style="margin:0">{{ post.title }}<span class="right">{{(i+1)}}</span></h4>
+                        <p style="margin:0">{{ post.post }}...</p>
+                        
+                    </router-link>
+                </div>
             </div>
         </div>
       </div>
@@ -64,7 +60,7 @@ export default {
     },
     methods:{
         getposts(){
-            this.$http.get('http://149.56.14.83:5000/getposts/'+this.$session.get("userid")).then(response=>{
+            this.$http.get(this.$store.state.url+'/getposts/'+this.$session.get("userid")).then(response=>{
                 var xposts=response.data
                 const dataarr=[]
                 for (var x in xposts){
@@ -79,6 +75,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.collection-item{
+    border-left: 5px solid white;
+}
+.collection-item:hover{
+    border-left: 5px solid black;
+}
 </style>

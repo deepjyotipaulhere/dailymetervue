@@ -9,7 +9,7 @@ app=Flask(__name__)
 CORS(app)
 
 def connect():
-    client=MongoClient('mongodb://localhost:27017/')
+    client=MongoClient('mongodb://149.56.14.83:27017/')
     return client
 
 @app.route('/register',methods=['POST'])
