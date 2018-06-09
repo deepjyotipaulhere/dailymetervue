@@ -12,26 +12,26 @@
                 <b class="black-text"><span class="fa fa-chevron-left"></span> Back to posts</b>
             </router-link>
         </div>
-    <center v-if="!isLoaded">
-        <div class="preloader-wrapper small active">
-            <div class="spinner-layer spinner-green-only" style="border-color:#000">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                    <div class="circle"></div>
-                </div><div class="circle-clipper right">
-                    <div class="circle"></div>
+        <center v-if="!isLoaded">
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
             </div>
+        </center>
+        <div class="container" v-else>
+            <h2>{{title}}</h2>
+            <h6>By <b>{{by}}</b></h6>
+            <label>{{date}}</label>
+            <p v-html="post"></p>
         </div>
-    </center>
-    <div class="container" v-else>
-        <h2>{{title}}</h2>
-        <h6>By <b>{{by}}</b></h6>
-        <label>{{date}}</label>
-        <p v-html="post"></p>
     </div>
-  </div>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
             post:'',
             by:'',
             isLoaded: false,
-            shareLink: "https://www.facebook.com/sharer/sharer.php?u="+window.location
+            shareLink: "https://www.facebook.com/sharer/sharer.php?u=" + window.location
         }
     },
     created:function(){
@@ -56,6 +56,8 @@ export default {
                 this.post=response.data.post.replace(new RegExp("\\\\n", "g"), "<br />");
                 this.date=response.data.date
                 this.by=this.$session.get("name")
+                
+                document.title=this.title+" by "+this.by+" | Dailymeter"
             }).then(()=>{
                 this.isLoaded=true
             })
