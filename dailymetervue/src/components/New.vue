@@ -18,6 +18,7 @@
                 <div class="col l4 m4"></div>
                 <div class="col l4 m4 s12">
                     <button class="btn btn-large black waves-effect waves-light" style="width:100%" @click.prevent="createPost">Post</button>
+                    <button class="btn btn-large black-text grey waves-effect waves-light" style="width:100%" @click.prevent="cancelpost">Cancel</button>
                 </div>
                 <div class="col l4 m4"></div>
             </div>
@@ -47,6 +48,10 @@ export default {
             this.$http.post(this.$store.state.url+'/createpost', this.postdata).then(response=>{
                 console.log("Ok")
             })
+        },
+        cancelpost(){
+            if (confirm("Do you want to discard your post?"))
+                this.$router.push('/dashboard')
         }
     },
     data(){

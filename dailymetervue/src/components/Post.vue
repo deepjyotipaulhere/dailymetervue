@@ -2,7 +2,7 @@
     <div>
         
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large waves-effect waves-light blue darken-4" :href=shareLink target="_blank"><span class="fa fa-facebook"></span></a>
+            <a class="btn-floating tooltipped btn-large waves-effect waves-light blue darken-4" data-position="left" data-tooltip="Share on Facebook" :href=shareLink target="_blank"><span class="fa fa-facebook"></span></a>
         </div>
       
           
@@ -48,6 +48,10 @@ export default {
     },
     created:function(){
         this.getpost()
+        $(document).ready(function(){
+            $('.tooltipped').tooltip();
+        });
+      
     },
     methods:{
         getpost(){
