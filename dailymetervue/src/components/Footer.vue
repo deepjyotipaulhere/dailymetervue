@@ -1,7 +1,7 @@
 <template>
   <div>
             <footer class="page-footer">
-                <div class="container">
+                <div class="container" v-if="!$session.exists()">
                     <div class="row">
                     <div class="col l6 s12">
                         <h5 class="white-text">Follow Us</h5>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="footer-copyright">
                     <div class="container">
-                        <h6 class="grey-text text-darken-3 center" href="#!" style="font-family:'Zilla'">&copy; Dailymeter</h6>
+                        <h6 class="grey-text text-darken-3 center" href="#!">&copy; Dailymeter</h6>
                     </div>
                 </div>
             </footer>
@@ -34,5 +34,9 @@ export default {
 </script>
 
 <style>
-
+footer {
+    position: relative;;
+   bottom:0;
+   width:100%;
+}
 </style>

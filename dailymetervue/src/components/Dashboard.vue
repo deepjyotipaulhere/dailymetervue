@@ -57,6 +57,7 @@ export default {
     },
     created:function(){
         this.getposts()
+        document.title="My Diary | " + this.$session.get("name")
     },
     methods:{
         getposts(){

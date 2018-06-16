@@ -5,7 +5,7 @@
  */
  @font-face{
      font-family: 'Bebas';
-     src: url('/static/materialize/fonts/BebasNeue.otf') format('opentype')
+     src: url('/static/materialize/fonts/SourceSansPro-Bold.ttf') format('truetype')
  }
  @font-face{
      font-family: 'Zilla';
