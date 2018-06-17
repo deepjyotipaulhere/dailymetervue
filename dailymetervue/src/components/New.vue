@@ -1,6 +1,33 @@
 <template>
     <div class="container">
         <form>
+            
+                <div class="card" style="position:fixed;width:20%;float:right;bottom:0;right:0;z-index:5000">
+                    <div class="card-image">
+                        
+                        <div class="collection" style="max-height:30vh;overflow-y:auto">
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item active">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                        </div>
+                        <input class="btn-floating halfway-fab waves-effect waves-light black" type="file" multiple name="mediafile" @change="filesChange($event.target.name, $event.target.files)">
+                        <!-- <a class="btn-floating halfway-fab waves-effect waves-light black"><i class="material-icons">add</i></a> -->
+                    </div>
+                    <div class="card-content">
+                        <h5>Media Pallete</h5>
+                    </div>
+                </div>
+            
             <br>
             <div class="row">
                 <div class="col m9 s9">
@@ -28,6 +55,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     created(){
         autosize($('textarea'));
@@ -52,7 +80,27 @@ export default {
         cancelpost(){
             if (confirm("Do you want to discard your post?"))
                 this.$router.push('/dashboard')
-        }
+        },
+        filesChange(fieldName, fileList) {
+            alert("Hello")
+            const formData = new FormData();
+
+            if (!fileList.length) return;
+
+            Array
+            .from(Array(fileList.length).keys())
+            .map(x => {
+                formData.append(fieldName, fileList[x], fileList[x].name);
+            });
+
+            // save it
+            this.save(formData);
+        },
+        save(formData) {
+            axios.post(this.$store.state.url+'/insertdoc', formData).then(response=>{
+                console.log(response.data)
+            })
+        },
     },
     data(){
         return {
