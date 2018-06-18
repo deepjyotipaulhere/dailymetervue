@@ -3,7 +3,9 @@ from flask_cors import CORS
 from pymongo import MongoClient
 import pymongo
 import datetime
+import os
 from bson.objectid import ObjectId
+from gridfs import GridFS
 
 app=Flask(__name__)
 CORS(app)
@@ -102,6 +104,18 @@ def getpost(id):
     except Exception as e:
         print(e)
         return "notfound"
+
+@app.route('/insertdoc',methods=['POST'])
+def insertdoc():
+    file = request.files['mediafile']
+    if file.filename == '':
+        return "None"
+    else:
+        con=connect()
+        db=con.dailymeter
+        fs = GridFS(db)
+        ob = fs.put(file,content_type=file.content_type)
+        return str(ob)
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
