@@ -30,7 +30,7 @@
                                         </div>
                                         <span v-if="loginInvalid" class="right alert"><span class="fa fa-exclamation-triangle"></span> Username and Password did not match</span>
                                         <br>
-                                        <button v-if="!isLoginClicked" class="btn btn-large black waves-effect waves-light" @click="login">Sign In</button>
+                                        <button v-if="!isLoginClicked" class="btn btn-large black waves-effect waves-light" @click.prevent="login">Sign In</button>
                                         <div v-else class="preloader-wrapper small active">
                                             <div class="spinner-layer spinner-green-only" style="border-color:#000">
                                                 <div class="circle-clipper left">
@@ -64,7 +64,7 @@
                                         </div>
                                         <br>
                                         <center>
-                                        <button v-if="!isRegisterClicked" class="btn btn-large black waves-effect waves-light" style="width:100%" @click="register">Register</button>
+                                        <button v-if="!isRegisterClicked" class="btn btn-large black waves-effect waves-light" style="width:100%" @click.prevent="register">Register</button>
                                         <div v-else class="preloader-wrapper small active">
                                             <div class="spinner-layer spinner-green-only" style="border-color:#000">
                                                 <div class="circle-clipper left">
@@ -171,7 +171,7 @@ export default {
             $('.tabs').tabs();
         });
         if (this.$session.exists()){
-            window.location.replace('/#/dashboard')
+            window.location.replace('/dashboard')
         }
     }
 }

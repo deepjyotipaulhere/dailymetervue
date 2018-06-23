@@ -14,32 +14,40 @@
                 
             </div>
         </div>
-        <hr>
-        <h3 class="center" style="margin:0;padding:0">My Diary</h3>
-        <p class="center" style="margin:0;padding:0">{{ posts.length>0?posts.length+" pages":"" }}</p>
-        <center v-if="!isLoaded">
-        <div class="preloader-wrapper small active">
-            <div class="spinner-layer spinner-green-only" style="border-color:#000">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                    <div class="circle"></div>
-                </div><div class="circle-clipper right">
-                    <div class="circle"></div>
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <h3>My Diary</h3>
+                    <span class="" style="margin:0;padding:0;">{{ posts.length>0?posts.length+" pages":"" }}</span>
+                    
+                    
                 </div>
-            </div>
-        </div>
-        </center>
-
-
-        <div v-else class="container">
-            <div class="row">
-                <div class="collection z-depth-1">
-                    <router-link :to="{path:'/post/'+ post.postid}" href="#!" class="collection-item" :key="post.postid" v-for="(post,i) in posts">
-                        <h4 style="margin:0">{{ post.title }}<span class="right">{{(i+1)}}</span></h4>
-                        <p style="margin:0">{{ post.post }}...</p>
-                        
-                    </router-link>
+                    <center v-if="!isLoaded">
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </center>
+                    
+                    <div v-else>
+                        <div class="card-action">
+                        <div class="row">
+                            <div class="collection" style="border:none">
+                                <router-link :to="{path:'/post/'+ post.postid}" href="#!" class="collection-item" :key="post.postid" v-for="(post,i) in posts">
+                                    <h4 style="margin:0">{{ post.title }}<span class="right">{{(i+1)}}</span></h4>
+                                    <p style="margin:0">{{ post.post }}...</p>
+                                    
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,9 +86,8 @@ export default {
 
 <style scoped>
 .collection-item{
-    border-left: 5px solid white;
+    color: initial !important
 }
 .collection-item:hover{
-    border-left: 5px solid black;
 }
 </style>

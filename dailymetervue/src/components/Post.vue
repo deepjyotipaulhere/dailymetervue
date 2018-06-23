@@ -12,24 +12,34 @@
                 <b class="black-text"><span class="fa fa-chevron-left"></span> Back to My Diary</b>
             </router-link>
         </div>
-        <center v-if="!isLoaded">
-            <div class="preloader-wrapper small active">
-                <div class="spinner-layer spinner-green-only" style="border-color:#000">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+        
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <center v-if="!isLoaded">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-green-only" style="border-color:#000">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <div v-else>
+                        <h2 style="margin:0">{{title}}</h2>
+                        <h6>By <b>{{by}}</b></h6>
+                        <label>{{date}}</label>
+                    
+                        <div class="card-action">
+                            <p v-html="post"></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </center>
-        <div class="container" v-else>
-            <h2>{{title}}</h2>
-            <h6>By <b>{{by}}</b></h6>
-            <label>{{date}}</label>
-            <p v-html="post"></p>
         </div>
     </div>
 </template>
